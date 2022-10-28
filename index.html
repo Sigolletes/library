@@ -22,7 +22,7 @@
 
     <div id="container">
         <div id="bttnDiv">
-            <button id="add" type="button">+ Add book</button>
+            <button id="addButton" type="button">+ Add book</button>
         </div>
 
         <main id="main">
@@ -33,4 +33,20 @@
     <footer>
         <p>Coded by Sigolletes</p>
     </footer>
+
+    <div id="addDiv">
+        <h3>Add new book</h3>
+
+        <input id="title" name="title" type="text" maxlength="20" placeholder="Title" required>
+        <input id="author" name="author" type="text" maxlength="20" placeholder="Author" required>
+        <input id="pages" name="pages" type="number" max="50000" min="1" placeholder="Pages" required>
+
+        <div id="readDiv">
+            <label for="read">Have you read it?</label>
+            <input id="read" name="read" type="checkbox">
+        </div>
+
+        <button id="submit" type="submit">Submit</button>
+    </div>
+
 </body>

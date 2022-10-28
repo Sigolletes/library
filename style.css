@@ -22,6 +22,7 @@ body {
 
 button {
     font-family: 'Nunito', sans-serif;
+    color: var(--color1);
     font-size: 18px;
     padding: 10px 30px 10px 30px;
     border-radius: 5px;
@@ -59,8 +60,16 @@ h1 {
 }
 
 #main {
-    padding: 1vh 5vw 1vh 5vw;
+    padding: 3%;
+    display: grid;
+    grid-gap: 3%;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    grid-template-rows: repeat(auto-fit, minmax(250px, 1fr));
+    overflow: auto;
+}
 
+.book {
+    background-color: var(--color2);
 }
 
 footer {
@@ -71,4 +80,51 @@ footer {
     align-items: center;
     font-size: 18px;
     text-shadow: rgba(4, 4, 4, 0.5) 0px 4px 4px;
+}
+
+#addDiv {
+    background-color: var(--color3);
+    color: var(--color1);
+    font-size: 20px;
+    padding: 30px;
+    border-radius: 5px;
+    box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
+
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    display: none;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+    gap: 8px;
+}
+
+h3 {
+    padding-bottom: 20px;
+}
+
+input {
+    padding: 8px;
+    font-size: 18px;
+    width: 100%;
+    border-radius: 5px;
+    border: none;
+    color: var(--color1);
+}
+
+input::placeholder {
+    color: rgba(74, 28, 60, 0.6);
+}
+
+#readDiv {
+    display: grid;
+    grid-template-columns: 9fr 1fr;
+    gap: 10px;
+    padding: 15px 0 5px 0;
+}
+
+#submit {
+    background-color: rgb(247, 195, 187);
 }
