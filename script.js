@@ -3,44 +3,35 @@
 const main = document.querySelector("#main");
 const addDiv = document.querySelector("#addDiv");
 const addButton = document.querySelector("#addButton");
+const submit = document.querySelector("#submit");
+const alert = document.querySelector("#alert");
+const darker = document.querySelector("#darker");
+const returnButton = document.querySelector("#return");
 
-let myLibrary = [
-    {title: "Book 1 meredenerese ne", 
-    author: "Author 1 nenenenenenen", 
-    pages: 100, 
-    read: true},
+const title = document.querySelector("#title");
+const author = document.querySelector("#author");
+const pages = document.querySelector("#pages");
+const read = document.querySelector("#read");
 
-    {title: "El camino de Santiago de Compostela", 
-    author: "Author 21 apellido apellido", 
-    pages: 200, 
-    read: true},
-
-    {title: "Book 3", 
-    author: "Author 3", 
-    pages: 300, 
-    read: false},
-
-    {title: "Book 4", 
-    author: "Author 4", 
-    pages: 400, 
-    read: false}
-];
+let myLibrary = [];
 
 // FUNCTIONS
 
-function book(title, author, pages, read) {
-    this.title = title;
-    this.author = author;
-    this.pages = Number(pages);
-    this.read = Boolean(read);
+class Book {
+    constructor(title, author, pages, read) {
+        this.title = title;
+        this.author = author;
+        this.pages = Number(pages);
+        this.read = Boolean(read);
+    }
 }
 
 function addBook(book) {
-    let newBook = book();
-    myLibrary.push(newBook);
+    myLibrary.push(book);
 }
 
 function display(arr) {
+    main.innerHTML = "";
     for (book of arr) {
         let article = document.createElement("article");
         main.appendChild(article);
@@ -89,4 +80,32 @@ display(myLibrary);
 
 addButton.addEventListener("click", () => {
     addDiv.style.display = "flex";
+    darker.style.display = "flex";
+});
+
+submit.addEventListener("click", () => {
+    if (title.checkValidity() && author.checkValidity() && pages.checkValidity()) {
+        let bookCreation = new Book(title.value, author.value, pages.value, read.checked);
+        addBook(bookCreation);
+        display(myLibrary);
+        addDiv.style.display = "none";
+        darker.style.display = "none";
+        alert.innerText = "";
+    } else {
+        alert.innerText = "Fill out all the fields";
+    }
+    title.value = "";
+    author.value = "";
+    pages.value = "";
+    read.checked = false;
+});
+
+returnButton.addEventListener("click", () => {
+    title.value = "";
+    author.value = "";
+    pages.value = "";
+    read.checked = false;
+    alert.innerText = "";
+    addDiv.style.display = "none";
+    darker.style.display = "none";
 });
