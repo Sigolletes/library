@@ -1,0 +1,74 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --color1: rgb(74, 28, 60);
+    --color2: rgb(41, 90, 71);
+    --color3: rgb(239, 219, 216);
+
+    font-family: 'Nunito', sans-serif;
+}
+
+body {
+    width: 100vw;
+    height: 100vh;
+    display: grid;
+    grid-template-rows: 3fr 28fr 2fr;
+    color: var(--color3);
+}
+
+button {
+    font-family: 'Nunito', sans-serif;
+    font-size: 18px;
+    padding: 10px 30px 10px 30px;
+    border-radius: 5px;
+    border: none;
+    background-color: var(--color3);
+    box-shadow: rgba(0, 0, 0, 0.4) 0px 2px 4px, rgba(0, 0, 0, 0.3) 0px 7px 13px -3px, rgba(0, 0, 0, 0.2) 0px -3px 0px inset;
+}
+
+#top {
+    background-color: var(--color2);
+    box-shadow: inset 0 0 10px rgb(78, 166, 129);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1vh 5vw 1vh 5vw;
+}
+
+h1 {
+    font-size: 50px;
+    text-shadow: rgba(4, 4, 4, 0.5) 0px 4px 4px;
+}
+
+#container {
+    background-color: var(--color1);
+    box-shadow: inset 0 0 30px rgb(176, 68, 126);
+    display: grid;
+    grid-template-rows: 1fr 9fr;
+}
+
+#bttnDiv {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 1vh 5vw 1vh 5vw;
+}
+
+#main {
+    padding: 1vh 5vw 1vh 5vw;
+
+}
+
+footer {
+    background-color: var(--color2);
+    box-shadow: inset 0 0 10px rgb(78, 166, 129);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 18px;
+    text-shadow: rgba(4, 4, 4, 0.5) 0px 4px 4px;
+}
