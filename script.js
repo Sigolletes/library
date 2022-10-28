@@ -5,13 +5,13 @@ const addDiv = document.querySelector("#addDiv");
 const addButton = document.querySelector("#addButton");
 
 let myLibrary = [
-    {title: "Book 1", 
-    author: "Author 1", 
+    {title: "Book 1 meredenerese ne", 
+    author: "Author 1 nenenenenenen", 
     pages: 100, 
     read: true},
 
-    {title: "Book 2", 
-    author: "Author 21", 
+    {title: "El camino de Santiago de Compostela", 
+    author: "Author 21 apellido apellido", 
     pages: 200, 
     read: true},
 
@@ -46,12 +46,41 @@ function display(arr) {
         main.appendChild(article);
         article.classList.add("book");
 
-        for (info in book) {
-            let h2 = document.createElement("h2");
-            article.appendChild(h2);
-            h2.innerText = 
+        let div1 = document.createElement("div");
+        article.appendChild(div1);
+        div1.classList.add("div1");
+
+        let aTitle = document.createElement("h2");
+        div1.appendChild(aTitle);
+        aTitle.innerText = book.title;
+
+        let aAuthor = document.createElement("h2");
+        div1.appendChild(aAuthor);
+        aAuthor.innerText = book.author;
+        aAuthor.style.fontStyle = "italic";
+
+        let aPages = document.createElement("h2");
+        div1.appendChild(aPages);
+        aPages.innerText = book.pages;
+
+        let div2 = document.createElement("div");
+        article.appendChild(div2);
+        div2.classList.add("div2");
+
+        let aRead = document.createElement("button");
+        div2.appendChild(aRead);
+        if (book.read) {
+            aRead.innerText = "Read";
+            aRead.classList.add("green");
+        } else {
+            aRead.innerText = "Not read";
+            aRead.classList.add("red");
         }
 
+        let remove = document.createElement("button");
+        div2.appendChild(remove);
+        remove.classList.add("removeButton");
+        remove.innerText = "Remove";
     }
 }
 display(myLibrary);
