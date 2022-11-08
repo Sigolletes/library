@@ -4,7 +4,7 @@ const main = document.querySelector("#main");
 const addDiv = document.querySelector("#addDiv");
 const addButton = document.querySelector("#addButton");
 const submit = document.querySelector("#submit");
-const alert = document.querySelector("#alert");
+const alert1 = document.querySelector("#alert");
 const darker = document.querySelector("#darker");
 const returnButton = document.querySelector("#return");
 
@@ -14,6 +14,7 @@ const pages = document.querySelector("#pages");
 const read = document.querySelector("#read");
 
 let myLibrary = [];
+let id = 0;
 
 // FUNCTIONS
 
@@ -23,6 +24,17 @@ class Book {
         this.author = author;
         this.pages = Number(pages);
         this.read = Boolean(read);
+
+        this.id = id;
+        id++;
+    }
+
+    changeRead() {
+        if (this.read === true) {
+            this.read = false;
+        } else {
+            this.read = true;
+        }
     }
 }
 
@@ -32,7 +44,7 @@ function addBook(book) {
 
 function display(arr) {
     main.innerHTML = "";
-    for (book of arr) {
+    for (el of arr) {
         let article = document.createElement("article");
         main.appendChild(article);
         article.classList.add("book");
@@ -43,24 +55,26 @@ function display(arr) {
 
         let aTitle = document.createElement("h2");
         div1.appendChild(aTitle);
-        aTitle.innerText = book.title;
+        aTitle.innerText = el.title;
 
         let aAuthor = document.createElement("h2");
         div1.appendChild(aAuthor);
-        aAuthor.innerText = book.author;
+        aAuthor.innerText = el.author;
         aAuthor.style.fontStyle = "italic";
 
         let aPages = document.createElement("h2");
         div1.appendChild(aPages);
-        aPages.innerText = book.pages;
+        aPages.innerText = el.pages;
 
         let div2 = document.createElement("div");
         article.appendChild(div2);
         div2.classList.add("div2");
 
         let aRead = document.createElement("button");
+        aRead.setAttribute("data-id", el.id);
         div2.appendChild(aRead);
-        if (book.read) {
+        aRead.classList.add("aReadClass");
+        if (el.read) {
             aRead.innerText = "Read";
             aRead.classList.add("green");
         } else {
@@ -69,12 +83,16 @@ function display(arr) {
         }
 
         let remove = document.createElement("button");
+        remove.setAttribute("data-id", el.id);
         div2.appendChild(remove);
         remove.classList.add("removeButton");
         remove.innerText = "Remove";
     }
 }
 display(myLibrary);
+
+const aReadClass = document.querySelector(".aReadClass");
+const removeButton = document.querySelector(".removeButton");
 
 // EVENTS
 
@@ -90,9 +108,9 @@ submit.addEventListener("click", () => {
         display(myLibrary);
         addDiv.style.display = "none";
         darker.style.display = "none";
-        alert.innerText = "";
+        alert1.innerText = "";
     } else {
-        alert.innerText = "Fill out all the fields";
+        alert1.innerText = "Fill out all the fields";
     }
     title.value = "";
     author.value = "";
@@ -105,7 +123,18 @@ returnButton.addEventListener("click", () => {
     author.value = "";
     pages.value = "";
     read.checked = false;
-    alert.innerText = "";
+    alert1.innerText = "";
     addDiv.style.display = "none";
     darker.style.display = "none";
+});
+
+aReadClass.addEventListener("click", () => {
+    let attr = aReadClass.getAttribute("data-id");
+    let bookToChange = myLibrary.find(book => book.id == "attr");
+    bookToChange.changeRead();
+    display(myLibrary);
+});
+
+removeButton.addEventListener("click", () => {
+    
 });
