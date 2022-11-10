@@ -13,9 +13,6 @@ const author = document.querySelector("#author");
 const pages = document.querySelector("#pages");
 const read = document.querySelector("#read");
 
-let myLibrary = [];
-let id = 0;
-
 // FUNCTIONS
 
 class Book {
@@ -24,23 +21,33 @@ class Book {
         this.author = author;
         this.pages = Number(pages);
         this.read = Boolean(read);
+    }
+}
 
-        this.id = id;
-        id++;
+class Library {
+    constructor() {
+        this.books = [];
     }
 
-    changeRead() {
-        if (this.read === true) {
-            this.read = false;
+    add(book) {
+        this.books.push(book);
+    }
+
+    remove(title) {
+        this.books = this.books.filter((book) => book.title !== title);
+    }
+
+    changeRead(title) {
+        let bookToChange = this.some((el) => el.title === title);
+        if (this.bookToChange.read) {
+            this.bookToChange.read = false;
         } else {
-            this.read = true;
+            this.bookToChange.read = true;
         }
     }
 }
 
-function addBook(book) {
-    myLibrary.push(book);
-}
+const myLibrary = new Library();
 
 function display(arr) {
     main.innerHTML = "";
@@ -73,6 +80,8 @@ function display(arr) {
         let aRead = document.createElement("button");
         aRead.setAttribute("data-id", el.id);
         div2.appendChild(aRead);
+        aRead.onclick = this.changeRead;
+
         aRead.classList.add("aReadClass");
         if (el.read) {
             aRead.innerText = "Read";
@@ -83,10 +92,10 @@ function display(arr) {
         }
 
         let remove = document.createElement("button");
-        remove.setAttribute("data-id", el.id);
         div2.appendChild(remove);
         remove.classList.add("removeButton");
         remove.innerText = "Remove";
+        remove.onclick = this.remove;
     }
 }
 display(myLibrary);
@@ -128,12 +137,12 @@ returnButton.addEventListener("click", () => {
     darker.style.display = "none";
 });
 
-aReadClass.addEventListener("click", () => {
+/* aReadClass.addEventListener("click", () => {
     let attr = aReadClass.getAttribute("data-id");
-    let bookToChange = myLibrary.find(book => book.id == "attr");
+    let bookToChange = myLibrary.find(book => book.id == attr);
     bookToChange.changeRead();
     display(myLibrary);
-});
+}); */
 
 removeButton.addEventListener("click", () => {
     
